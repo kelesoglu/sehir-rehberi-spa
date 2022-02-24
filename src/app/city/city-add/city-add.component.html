@@ -1,0 +1,29 @@
+<main class="role">
+  <div class="container">
+    <div class="row">
+      <form  [formGroup]="cityAddForm" (ngSubmit)="add()" class="form-cityadd">
+        <h2 class="mt-3 pt-3">Yeni Bir Şehir Ekle</h2>
+        <div class="form-group">
+          <input type="text" id="name" formControlName="name" class="form-control" placeholder="Şehir adı" autofocus>
+          <span *ngIf="cityAddForm.get('name').hasError('required') && cityAddForm.get('name').touched"
+                class="help-block">
+            Şehir adı zorunludur.
+          </span>
+        </div>
+        <div class="form-group">
+          <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+          <ngx-editor class="form-control" id="description"
+                      [ngModel]="html"
+          [editor]="editor" name="description" [placeholder]="'Buraya notlarınızı giriniz'"
+                          formControlName="description" [spellcheck]="true"></ngx-editor>
+          <!--<input type="text" id="description" formControlName="description" class="form-control" placeholder="Notlarınız" autofocus>-->
+          <span *ngIf="cityAddForm.get('description').hasError('required') && cityAddForm.get('description').touched"
+                class="help-block">
+            Açıklama zorunludur.
+          </span>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!cityAddForm.valid" >Şehir Ekle</button>
+      </form>
+    </div>
+  </div>
+</main>
